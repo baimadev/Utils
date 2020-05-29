@@ -1,0 +1,29 @@
+package cn.com.fenrir.inc.anko.utils
+
+import android.content.Context
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+
+/**
+ *
+ * 获取当前APP版本号
+ */
+fun getAppVersion(context: Context): Long {
+    try {
+        val info = context.packageManager.getPackageInfo(
+            context.packageName,
+            0
+        )
+        return info.longVersionCode
+    } catch (e: PackageManager.NameNotFoundException) {
+        e.printStackTrace()
+    }
+    return 1L
+}
+
+/**
+ * 获取当前进程最大能够使用的Memory
+ */
+fun getMaxMemory():Long{
+    return Runtime.getRuntime().maxMemory() / 1024
+}
